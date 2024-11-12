@@ -22,4 +22,4 @@ order_product_assocoations = Table(
     Column('product_id', ForeignKey('products.id'))
 )
 
-OrderOrm.products = relationship("ProductORM", secondary=order_product_assocoations)
+OrderORM.products = relationship("ProductORM", secondary=order_product_assocoations)

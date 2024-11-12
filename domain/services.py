@@ -1,5 +1,6 @@
-from .model import Product, Order
+from .models import Product, Order
 from .repositories import ProductRepository, OrderRepository
+from typing import List
 
 class WarehouseService:
     def __init__(self, product_repo: ProductRepository, order_repo: OrderRepository):

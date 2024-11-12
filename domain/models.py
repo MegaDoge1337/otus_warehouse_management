@@ -11,7 +11,7 @@ class Product:
 @dataclass
 class Order:
     id: int
-    products: List[Product] = filed(default_factory=list)
+    products: List[Product] = field(default_factory=list)
 
     def add_product(self, product: Product):
         self.products.append(product)
