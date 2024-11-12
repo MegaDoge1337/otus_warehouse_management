@@ -20,7 +20,7 @@ def main():
 
     warehouse_service = WarehouseService(product_repo, order_repo)
     with uow:
-        new_product = warehouse_service.cerate_product(name="test1", quntity=1, price=100)
+        new_product = warehouse_service.create_product(name="test1", quantity=1, price=100)
         uow.commit()
         print(f"create product: {new_product}")
         #todo add some actions

@@ -8,7 +8,7 @@ class ProductORM(Base):
     __tablename__ = 'products'
     id = Column(Integer, primary_key=True)
     name=Column(String)
-    quntity=Column(Integer)
+    quantity=Column(Integer)
     price=Column(Float)
 
 class OrderORM(Base):

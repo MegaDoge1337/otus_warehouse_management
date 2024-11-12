@@ -5,7 +5,7 @@ from typing import List
 class Product:
     id: int
     name:str
-    qunatity:int
+    quantity:int
     price:float
 
 @dataclass
