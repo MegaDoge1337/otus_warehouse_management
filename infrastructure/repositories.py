@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from typing import List
-from domain.models import Order, Product
-from domain.repositories import ProductRepository, OrderRepository
-from .orm import ProductORM, OrderORM
+from domain.models import Order, Product, Customer
+from domain.repositories import ProductRepository, OrderRepository, CustomerRepository
+from .orm import ProductORM, OrderORM, CustomerORM
 
 class SqlAlchemyProductRepository(ProductRepository):
     def __init__(self, session: Session):
@@ -46,6 +46,40 @@ class SqlAlchemyOrderRepository(OrderRepository):
             orders.append(Order(id=order_orm.id, products=products))
         return orders
 
+class SqlAlchemyCustomerRepository(CustomerRepository):
+    def __init__(self, session: Session):
+        self.session=session
+
+    def add(self, customer: Customer):
+        customers_orm = CustomerORM()
+        customers_orm.name = customer.name
+        customers_orm.orders = [self.session.query(OrderORM).filter_by(id=o.id).one() for o in customer.orders]
+        self.session.add(customers_orm)
+
+    def get(self, customer_id: int) -> Customer:
+        customers_orm = self.session.query(CustomerORM).filter_by(id=customer_id).one()
+        orders = [
+            Order(id=o.id, products=[
+                Product(id=p.id, name=p.name, quantity=p.quantity, price=p.price) 
+                for p in o.products
+            ]) 
+            for o in customers_orm.orders
+        ]
+        return Customer(id=customers_orm.id, name=customers_orm.name, orders=orders)
+
+    def list(self) -> List[Customer]:
+        customers_orm = self.session.query(CustomerORM).all()
+        customers = []
+        for customer_orm in customers_orm:
+            orders = [
+                Order(id=o.id, products=[
+                    Product(id=p.id, name=p.name, quantity=p.quantity, price=p.price) 
+                    for p in o.products
+                ]) 
+                for o in customer_orm.orders
+            ]
+            customers.append(Customer(id=customer_orm.id, name=customer_orm.name, orders=orders))
+        return customers
 
 
 

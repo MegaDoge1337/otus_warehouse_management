@@ -15,3 +15,12 @@ class Order:
 
     def add_product(self, product: Product):
         self.products.append(product)
+
+@dataclass
+class Customer:
+    id: int
+    name: str
+    orders: List[Order] = field(default_factory=list)
+
+    def add_order(self, order: Order):
+        self.orders.append(order)

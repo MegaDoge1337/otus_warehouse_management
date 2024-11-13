@@ -15,6 +15,11 @@ class OrderORM(Base):
     __tablename__ = "orders"
     id = Column(Integer, primary_key=True)
 
+class CustomerORM(Base):
+    __tablename__ = "customers"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+
 
 order_product_assocoations = Table(
     'order_product_assocoations', Base.metadata,
@@ -22,4 +27,11 @@ order_product_assocoations = Table(
     Column('product_id', ForeignKey('products.id'))
 )
 
+customer_order_assocoations = Table(
+    'customer_order_assocoations', Base.metadata,
+    Column('customer_id', ForeignKey('customers.id')),
+    Column('order_id', ForeignKey('orders.id'))
+)
+
 OrderORM.products = relationship("ProductORM", secondary=order_product_assocoations)
+CustomerORM.orders = relationship("OrderORM", secondary=customer_order_assocoations)

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from .models import Product, Order
+from .models import Product, Order, Customer
 
 class ProductRepository(ABC):
     @abstractmethod
@@ -27,6 +27,16 @@ class OrderRepository(ABC):
     @abstractmethod
     def list(self) -> List[Order]:
         pass
-    
 
+class CustomerRepository(ABC):
+    @abstractmethod
+    def add(self, customer: Customer):
+        pass
 
+    @abstractmethod
+    def get(self, customer_id: int) -> Customer:
+        pass
+
+    @abstractmethod
+    def list(self) -> List[Customer]:
+        pass
