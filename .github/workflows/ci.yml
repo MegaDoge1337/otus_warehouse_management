@@ -1,4 +1,4 @@
-name: otus-scoring-api
+name: otus-warehouse-management
 on:
   push:
 
