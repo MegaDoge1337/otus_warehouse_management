@@ -1,5 +1,6 @@
-from domain.unit_of_work import UnitOfWork
 from sqlalchemy.orm import Session
+
+from domain.unit_of_work import UnitOfWork
 
 
 class SqlAlchemyUnitOfWork(UnitOfWork):

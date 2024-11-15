@@ -12,6 +12,3 @@ format:
 
 lint:
 	poetry run ruff check
-
-import-sort:
-	poetry run isort .
