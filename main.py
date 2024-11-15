@@ -30,9 +30,6 @@ def main():
             print("5 - Close application")
             user_input = input("Choose operation:")
 
-            if user_input == "5":
-                break
-
             if user_input == "1":
                 product_name = input("Product name:")
                 product_quantity = int(input("Product quantity:"))
@@ -67,10 +64,15 @@ def main():
                                                                 orders=orders)
                 uow.commit()
                 print(f"New customer created: {new_customer}")
+                continue
             
             if user_input == "4":
                 for customer in warehouse_service.get_customers_list():
                     print(f"[Customer {customer.name}] >> ORDERS [{customer.orders}]")
+                continue
+            
+            if user_input == "5":
+                break
 
 
 if __name__ == "__main__":
