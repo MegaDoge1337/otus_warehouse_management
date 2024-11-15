@@ -9,12 +9,12 @@
 
 1. Склонируйте репозиторий:
 ```
-git clone ...
+git clone https://github.com/MegaDoge1337/otus_warehouse_management.git
 ```
 
 2. Перейдите в директорию с проектом:
 ```
-cd ...
+cd otus_warehouse_management
 ```
 
 3. Установите зависимости:
